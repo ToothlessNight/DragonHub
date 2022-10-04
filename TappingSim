@@ -52,7 +52,7 @@ print('Night Fury Dragon Hub :)')
 
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
 
-local w = library:CreateWindow("Tappimg Simulator")
+local w = library:CreateWindow("DragonHub")
 
 local b = w:CreateFolder("Farming")
 
