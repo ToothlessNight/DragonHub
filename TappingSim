@@ -1,6 +1,6 @@
 getgenv().autoTap = false;
 getgenv().autoRebirth = false;
-getgenv().autoHatchEventEgg = false;
+getgenv().autoBuyEventEgg = false;
 getgenv().thisvalue = 'my name';
 
 
@@ -16,8 +16,9 @@ end
 
 function autoRebirth(rebirthAmount)
     spawn(function()
-        while autoRebirth == true do
-            local args = {[1] = rebirthAmount}
+        while getgenv().autoRebirth == true do
+            local args = {
+            [1] = 500}
             game:GetService("ReplicatedStorage").Events.Rebirth:FireServer(unpack(args))
             wait()
         end
@@ -26,12 +27,12 @@ end
 
 function buyEgg(eggType)
     spawn(function()
-        while autoHatchEventEgg == true do
+        while autoBuyEventEgg == true do
             local args = {
             [1] = {},
             [2] = "55M Egg",
-            [3] = 1}
-            game:GetService("ReplicatedStorage").Events.HatchEgg:InvokeServer(unpack(args))
+            [3] = 1}       
+            game:GetService("ReplicatedStorage").Events.HatchEgg:InvokeServer(unpack(args))            
             wait()
         end
     end)
@@ -73,14 +74,26 @@ b:Toggle("Auto Rebirth",function(bool)
     getgenv().autoRebirth = bool
     print('Auto Tap is: ', bool);
     if bool then
-        autoRebirth(20);
+        autoRebirth(100);
     end
 end)
 
-c:Toggle("Auto Buy Event Egg",function(bool)
-    getgenv().autoHatchEventEgg = bool
+c:Toggle("Auto Buy Event Egg (1T)",function(bool)
+    getgenv().autoBuyEventEgg = bool
     print('Auto Tap is: ', bool);
     if bool then
-        buyEgg('55M Egg');
+        buyEgg('Event Egg');
     end
 end)
+
+
+
+
+
+
+
+-- b"Pretty Useless NGL"Label({
+--     TextSize = 25;
+--     TextColor = Color3.fromRGB(255,255,255);
+--     BgColor = Color3.fromRGB(69,69,69);
+-- })
