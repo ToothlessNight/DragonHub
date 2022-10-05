@@ -1,6 +1,7 @@
 getgenv().autoTap = false;
 getgenv().autoRebirth = false;
-getgenv().autoBuyEventEgg = false;
+getgenv().autoBuyEgg = false;
+getgenv().autoClaimRandomReward = false;
 getgenv().thisvalue = 'my name';
 
 
@@ -14,42 +15,41 @@ function doTap()
     end)
 end
 
-function autoRebirth(rebirthAmount)
+function autoRebirth(selectedRebirth)
     spawn(function()
-        while getgenv().autoRebirth == true do
+        while wait() do
+            if not getgenv().autoRebirth then break end
             local args = {
-            [1] = 500}
+            [1] = selectedRebirth}
             game:GetService("ReplicatedStorage").Events.Rebirth:FireServer(unpack(args))
-            wait()
         end
     end)
 end
 
-function buyEgg(eggType)
+function autoegg(selectedEgg)
     spawn(function()
-        while autoBuyEventEgg == true do
+        while wait() do
+            if not getgenv().autoBuyEgg then break end
             local args = {
             [1] = {},
-            [2] = "55M Egg",
-            [3] = 1}       
-            game:GetService("ReplicatedStorage").Events.HatchEgg:InvokeServer(unpack(args))            
-            wait()
+            [2] = selectedEgg,
+            [3] = 1}
+            game:GetService("ReplicatedStorage").Events.HatchEgg:InvokeServer(unpack(args))
         end
     end)
 end
 
+function autoclaimrandomreward()
+    spawn(function()
+        while wait(2) do
+            game:GetService("ReplicatedStorage").Events.ClaimRandomReward:FireServer()
+        end
+    end)
+end
 
 print('Night Fury Dragon Hub :)')
 
-
-
-
-
-
-
-
-
-
+local selectedEgg
 
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
 
@@ -72,28 +72,34 @@ end)
 
 b:Toggle("Auto Rebirth",function(bool)
     getgenv().autoRebirth = bool
-    print('Auto Tap is: ', bool);
+    print("Auto Rebirth is: ", bool)
     if bool then
-        autoRebirth(100);
+        autoRebirth(selectedRebirth)
     end
 end)
 
-c:Toggle("Auto Buy Event Egg (1T)",function(bool)
-    getgenv().autoBuyEventEgg = bool
-    print('Auto Tap is: ', bool);
+b:Toggle("Auto ClaimRandomReward",function (bool)
+    getgenv().autoClaimRandomReward = bool
+    print("Auto Claim is: ", bool)
     if bool then
-        buyEgg('Event Egg');
+        autoclaimrandomreward(selectautoclaimrandomreward)
     end
 end)
 
+b:Dropdown("Rebirth",{"1","5","10", "20", "100", "500", "4000", "13500", "32500", "62500", "10800", "171500", "256000", "364500", "500000", "1000000"},true,function(value)
+    selectedRebirth = value
+    print(value)
+end)
 
+c:Toggle("Auto Buy Egg",function(bool)
+    getgenv().autoBuyEgg = bool
+    print('Auto Tap is: ', bool);
+    if bool then
+        autoegg(selectedEgg);
+    end
+end)
 
-
-
-
-
--- b"Pretty Useless NGL"Label({
---     TextSize = 25;
---     TextColor = Color3.fromRGB(255,255,255);
---     BgColor = Color3.fromRGB(69,69,69);
--- })
+c:Dropdown("Egg",{"Starter","Wood Egg","Jungle Egg","Forest Egg","Bee Egg","Swamp Egg","Snow Egg","Desert Egg","Death Egg","Beach Egg","Mine Egg","Cloud Egg","Coral Egg","Dark Egg","Fire Egg","Underworld Egg","Molten Egg","Magma Egg","Blue Magma Egg","55M Egg"},true,function(value) --true/false, replaces the current title "Dropdown" with the option that t
+    selectedEgg = value
+    print(value)
+end)
