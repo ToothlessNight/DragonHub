@@ -1,7 +1,12 @@
 getgenv().autoTap = false;
 getgenv().autoRebirth = false;
 getgenv().autoBuyEgg = false;
+getgenv().autoBuyRobuxEgg = false;
 getgenv().autoClaimRandomReward = false;
+getgenv().autoUpgradeRebirths = false;
+getgenv().autoGemMultiplierUpgrade = false;
+getgenv().autojumps = false;
+getgenv().autoStorageUpgrade = false;
 getgenv().thisvalue = 'my name';
 
 
@@ -10,7 +15,7 @@ function doTap()
     spawn(function()
         while autoTap == true do
             game:GetService("ReplicatedStorage").Events.Tap:FireServer()
-            wait()
+            task.wait()
         end
     end)
 end
@@ -41,11 +46,52 @@ end
 
 function autoclaimrandomreward()
     spawn(function()
-        while wait(2) do
+        while wait(1) do
             game:GetService("ReplicatedStorage").Events.ClaimRandomReward:FireServer()
         end
     end)
 end
+
+function autoRebirthUpgrade()
+    spawn(function()
+        while wait(1) do
+            local args = {
+            [1] = "rebirthUpgrades"}
+            game:GetService("ReplicatedStorage").Events.Upgrade:FireServer(unpack(args))
+        end
+    end)
+end
+
+function autoGemMultiplierUpgrade()
+    spawn(function()
+        while wait(2) do
+            local args = {
+            [1] = "gemMultiplierUpgrade"}
+            game:GetService("ReplicatedStorage").Events.Upgrade:FireServer(unpack(args))
+        end
+    end)
+end
+
+function autojumps()
+    spawn(function()
+        while wait(2) do
+            local args = {
+            [1] = "jumps"}
+            game:GetService("ReplicatedStorage").Events.Upgrade:FireServer(unpack(args))
+        end
+    end)
+end
+
+function autoStorageUpgrade()
+    spawn(function()
+        while wait(2) do
+            local args = {
+            [1] = "storageUpgrade"}
+            game:GetService("ReplicatedStorage").Events.Upgrade:FireServer(unpack(args))
+        end
+    end)
+end
+
 
 print('Night Fury Dragon Hub :)')
 
@@ -59,7 +105,13 @@ local b = w:CreateFolder("Farming")
 
 local c = w:CreateFolder("Eggs")
 
-b:DestroyGui()
+local e = w:CreateFolder("Upgrades")
+
+local f = w:CreateFolder("Misc")
+
+local g = w:CreateFolder("Destory GUI")
+
+g:DestroyGui()
 
 
 b:Toggle("Auto Tap",function(bool)
@@ -86,7 +138,7 @@ b:Toggle("Auto ClaimRandomReward",function (bool)
     end
 end)
 
-b:Dropdown("Rebirth",{"1","5","10", "20", "100", "500", "4000", "13500", "32500", "62500", "10800", "171500", "256000", "364500", "500000", "1000000"},true,function(value)
+b:Dropdown("Rebirth",{"1","5","10", "20", "100", "500", "4000", "13500", "32000", "62500", "75000", "108000", "125000", "171500", "256000", "350000", "364500", "500000", "750000", "1000000", "2000000"},true,function(value)
     selectedRebirth = value
     print(value)
 end)
@@ -99,7 +151,49 @@ c:Toggle("Auto Buy Egg",function(bool)
     end
 end)
 
-c:Dropdown("Egg",{"Starter","Wood Egg","Jungle Egg","Forest Egg","Bee Egg","Swamp Egg","Snow Egg","Desert Egg","Death Egg","Beach Egg","Mine Egg","Cloud Egg","Coral Egg","Dark Egg","Fire Egg","Underworld Egg","Molten Egg","Magma Egg","Blue Magma Egg","55M Egg"},true,function(value) --true/false, replaces the current title "Dropdown" with the option that t
+c:Dropdown("Egg",{"Starter","Wood Egg","Jungle Egg","Forest Egg","Bee Egg","Swamp Egg","Snow Egg","Desert Egg","Death Egg","Beach Egg","Mine Egg","Cloud Egg","Coral Egg","Dark Egg","Fire Egg","Underworld Egg","Molten Egg","Magma Egg","Blue Magma Egg","Purple Magma Egg","Yellow Magma Egg","Red Magma Egg","Holy Egg","Holy Wood Egg","Holy Bee Egg","Flora Egg","Flora Egg","Castle Egg","Candy Egg","Festival Egg","Japan Egg","Frost Alien Egg","Toxic Alien Egg","55M Egg", "50M2 Egg"},true,function(value) --true/false, replaces the current title "Dropdown" with the option that t
     selectedEgg = value
     print(value)
+end)
+
+e:Toggle("Auto Rebirth Upgrade",function(bool)
+    getgenv().autoRebirthUpgrade = bool
+    print('Auto Tap is: ', bool);
+    if bool then
+        autoRebirthUpgrade();
+    end
+end)
+
+e:Toggle("Auto Gem Multiplier Upgrade",function(bool)
+    getgenv().autoGemMultiplierUpgrade = bool
+    print('Auto Tap is: ', bool);
+    if bool then
+        autoGemMultiplierUpgrade();
+    end
+end)
+
+
+e:Toggle("Auto Storage Upgrade",function(bool)
+    getgenv().autoStorageUpgrade = bool
+    print('Auto Tap is: ', bool);
+    if bool then
+        autoStorageUpgrade();
+    end
+end)
+
+e:Toggle("Auto jumps",function(bool)
+    getgenv().autojumps = bool
+    print('Auto Tap is: ', bool);
+    if bool then
+        autojumps();
+    end
+end)
+
+f:Button("Simple inf Jump",function()
+        local InfiniteJumpEnabled = true
+        game:GetService("UserInputService").JumpRequest:connect(function()
+        if InfiniteJumpEnabled then
+            game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+        end
+    end)
 end)
