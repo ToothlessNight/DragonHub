@@ -2,6 +2,8 @@
 --By Toothless The Night Fury#9772
 --Dont Skid My Shit Skids
 
+getgenv().autoHalloweenTap = false;
+
 getgenv().autoTap = false;
 getgenv().autoRebirth = false;
 getgenv().autoBuyEgg = false;
@@ -18,7 +20,16 @@ getgenv().UseDoubleLuckBoost = false;
 getgenv().UseTripleLuckBoost = false;
 getgenv().thisvalue = 'my name';
 
-
+function doHalloweenTap()
+    spawn(function()
+        while autoHalloweenTap == true do
+            local args = {
+                [1] = 5}
+            game:GetService("ReplicatedStorage").Events.Tap:FireServer(unpack(args))
+            task.wait()
+        end
+    end)
+end
 
 function doTap()
     spawn(function()
@@ -351,6 +362,13 @@ local i = w:CreateFolder("Destory GUI")
 
 i:DestroyGui()
 
+b:Toggle("Auto Halloween Tap",function(bool)
+    getgenv().autoHalloweenTap = bool
+    print('Auto Tap is: ', bool);
+    if bool then
+        doHalloweenTap();
+    end
+end)
 
 b:Toggle("Auto Tap",function(bool)
     getgenv().autoTap = bool
@@ -405,7 +423,7 @@ c:Toggle("Auto Buy Egg",function(bool)
     end
 end)
 
-c:Dropdown("Egg",{"Starter","Wood Egg","Jungle Egg","Forest Egg","Bee Egg","Swamp Egg","Snow Egg","Desert Egg","Death Egg","Beach Egg","Mine Egg","Cloud Egg","Coral Egg","Dark Egg","Fire Egg","Underworld Egg","Molten Egg","Magma Egg","Blue Magma Egg","Purple Magma Egg","Yellow Magma Egg","Red Magma Egg","Holy Egg","Holy Wood Egg","Holy Bee Egg","Flora Egg","Flora Egg","Castle Egg","Candy Egg","Festival Egg","Japan Egg","Frost Alien Egg","Toxic Alien Egg","Jack o Lantern","Hydra Jack o Lantern","Vesta","Empyreus Pumpkin","Skeleton Mage","Pumpkin Egg","60M Egg"},true,function(value) --true/false, replaces the current title "Dropdown" with the option that t
+c:Dropdown("Egg",{"Starter","Wood Egg","Jungle Egg","Forest Egg","Bee Egg","Swamp Egg","Snow Egg","Desert Egg","Death Egg","Beach Egg","Mine Egg","Cloud Egg","Coral Egg","Dark Egg","Fire Egg","Underworld Egg","Molten Egg","Magma Egg","Blue Magma Egg","Purple Magma Egg","Yellow Magma Egg","Red Magma Egg","Holy Egg","Holy Wood Egg","Holy Bee Egg","Flora Egg","Flora Egg","Castle Egg","Candy Egg","Festival Egg","Japan Egg","Frost Alien Egg","Toxic Alien Egg","Halloween Egg","Orange Egg","Hallow Egg","","","","","","","","","60M Egg"},true,function(value) --true/false, replaces the current title "Dropdown" with the option that t
     selectedEgg = value
     print(value)
 end)
