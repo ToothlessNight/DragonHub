@@ -87,11 +87,10 @@ function MakeScriptHub()
         PremiumOnly = false
     })
 
-    local Credits Tab = Window:MakeTab({
-        Name = "Credits",
-        Icon = "rbxassetid://4483345998",
-        PremiumOnly = false
-    })
+    -- Labels
+    MiscTab:AddLabel("Credits go to 709!")
+
+    TeleportTab:AddLabel("Credits go to 709!")
 
 
     -- Dropdown Menus
@@ -120,7 +119,7 @@ EggTab:AddDropdown({
 EggTab:AddDropdown({
 	Name = "Choose Halloween Egg",
 	Default = "1",
-	Options = {"Halloween Egg","Orange Egg","Hallow Egg","Spooky Egg","Halloween Dominus Egg"},
+	Options = {"Halloween Egg","Orange Egg","Hallow Egg","Spooky Egg","Halloween Dominus Egg","Pumpkin Egg"},
 	Callback = function(Value)
 		print(Value)
 		selectedEgg = Value
@@ -784,105 +783,105 @@ EggTab:AddDropdown({
             darkheartTP()
     end
     })
-    
+
     TeleportTab:AddButton({
         Name = "Teleport to Flamelands!",
         Callback = function()
             flamelandsTP()
     end
     })
-    
+
     TeleportTab:AddButton({
         Name = "Teleport to Molten!",
         Callback = function()
             moltenTP()
     end
     })
-    
+
     TeleportTab:AddButton({
         Name = "Teleport to Blue Magma!",
         Callback = function()
             blueMagmaTP()
     end
     })
-    
+
     TeleportTab:AddButton({
         Name = "Teleport to Purple Magma!",
         Callback = function()
             purpleMagmaTP()
     end
     })
-    
+
     TeleportTab:AddButton({
         Name = "Teleport to Yellow Magma!",
         Callback = function()
             yellowMagmaTP()
     end
     })
-    
+
     TeleportTab:AddButton({
         Name = "Teleport to Red Magma!",
         Callback = function()
             redMagmaTP()
     end
     })
-    
+
     TeleportTab:AddButton({
         Name = "Teleport to Fantasy!",
         Callback = function()
             fantasyTP()
     end
     })
-    
+
     TeleportTab:AddButton({
         Name = "Teleport to Mystic!",
         Callback = function()
             mysticTP()
     end
     })
-    
+
     TeleportTab:AddButton({
         Name = "Teleport to Castle!",
         Callback = function()
             castleTP()
     end
     })
-    
+
     TeleportTab:AddButton({
         Name = "Teleport to Festival!",
         Callback = function()
             festivalTP()
     end
     })
-    
+
     TeleportTab:AddButton({
         Name = "Teleport to Japanese!",
         Callback = function()
             japaneseTP()
     end
     })
-    
+
     TeleportTab:AddButton({
         Name = "Teleport to Space!",
         Callback = function()
             spaceTP()
     end
     })
-    
+
     TeleportTab:AddButton({
         Name = "Teleport to Frost Space!",
         Callback = function()
             frostSpaceTP()
     end
     })
-    
+
     TeleportTab:AddButton({
         Name = "Teleport to Toxic Space!",
         Callback = function()
             toxicSpaceTP()
     end
     })
-    
+
     TeleportTab:AddButton({
         Name = "Teleport to Asteroid Space!",
         Callback = function()
@@ -891,7 +890,7 @@ EggTab:AddDropdown({
     })
 
     --end
-    enableBasicStuff() 
+    enableBasicStuff()
     OrionLib:Init()
 
 end
