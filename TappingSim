@@ -1,7 +1,3 @@
---DragonHub
---By Toothless The Night Fury#9772
---Dont Skid My Shit Skids
-
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Player = game.Players.LocalPlayer
 local Window = OrionLib:MakeWindow({Name = "DragonHub Key System", HidePremium = false, SaveConfig = true, IntroText = "DragonHub Key System"})
@@ -87,6 +83,12 @@ function MakeScriptHub()
 
     local MiscTab = Window:MakeTab({
         Name = "Misc Menu",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+    local Credits Tab = Window:MakeTab({
+        Name = "Credits",
         Icon = "rbxassetid://4483345998",
         PremiumOnly = false
     })
@@ -351,47 +353,47 @@ EggTab:AddDropdown({
         wait(4)
         asteroidSpaceTP()
         end
-    
+
         function spawnTP()
         game.ReplicatedStorage.Events.Teleport:FireServer(CFrame.new(-292.965424, 23.2814751, -423.599396, 0.087131694, 0, -0.996196806, 0, 1, 0, 0.996196806, 0, 0.087131694))
         end
-    
+
         function forestTP()
         game.ReplicatedStorage.Events.Teleport:FireServer(CFrame.new(-163.984467, 987.596497, -403.339417, 1, 0, 0, 0, 1, 0, 0, 0, 1))
         end
-    
+
         function flowerTP()
         game.ReplicatedStorage.Events.Teleport:FireServer(CFrame.new(-179.51564, 1524.63098, -682.498718, -1, 0, -0, -0, 1, -0, -0, 0, -1))
         end
-    
+
         function swampTP()
         game.ReplicatedStorage.Events.Teleport:FireServer(CFrame.new(-264.358887, 2123.06299, -694.661316, -1, 0, -0, -0, 1, -0, -0, 0, -1))
         end
-    
+
         function snowTP()
         game.ReplicatedStorage.Events.Teleport:FireServer(CFrame.new(-201.771973, 2944.48169, -470.408752, 0, 0, 1, 0, 1, 0, -1, 0, 0))
         end
-    
+
         function desertTP()
         game.ReplicatedStorage.Events.Teleport:FireServer(CFrame.new(-166.285156, 4235.38916, -779.153137, 0, 0, 1, 0, 1, 0, -1, 0, 0))
         end
-    
+
         function deathTP()
         game.ReplicatedStorage.Events.Teleport:FireServer(CFrame.new(-276.201263, 5425.62158, -480.287781, 0, 0, 1, 0, 1, 0, -1, 0, 0))
         end
-    
+
         function beachTP()
         game.ReplicatedStorage.Events.Teleport:FireServer(CFrame.new(-140.345093, 6881.63086, -495.682129, 0, 0, 1, 0, 1, 0, -1, 0, 0))
         end
-    
+
         function minesTP()
         game.ReplicatedStorage.Events.Teleport:FireServer(CFrame.new(-243.258667, 8376.5166, -483.889771, 0, 0, 1, 0, 1, 0, -1, 0, 0))
         end
-    
+
         function cloudsTP()
         game.ReplicatedStorage.Events.Teleport:FireServer(CFrame.new(-253.303482, 11262.8818, -237.888596, 0, 0, 1, 0, 1, 0, -1, 0, 0))
         end
-    
+
         function coralTP()
         game.ReplicatedStorage.Events.Teleport:FireServer(CFrame.new(-511.021118, 13812.0322, -543.241821, 0, 0, -1, 0, 1, -0, 1, 0, -0))
         end
@@ -912,6 +914,15 @@ function IncorrectKeyNotification()
 	})
 end
 
+function DiscordNotification()
+	OrionLib:MakeNotification({
+		Name = "Discord Copied!",
+		Content = "The Discord Link has been copied to clipboard!",
+		Image = "rbxassetid://4483345998",
+		Time = 5
+	})
+end
+
 local Tab = Window:MakeTab({
 	Name = "Key",
 	Icon = "rbxassetid://4483345998",
@@ -937,4 +948,13 @@ Tab:AddButton({
 				IncorrectKeyNotification()
 		end
     end
+})
+
+Tab:AddButton({
+	Name = "Get Key Here!",
+		Callback = function()
+            if setclipboard("https://discord.gg/KwyPcJQ9ma") then
+                DiscordNotification()
+            end
+		end
 })
