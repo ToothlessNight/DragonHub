@@ -119,7 +119,7 @@ EggTab:AddDropdown({
 EggTab:AddDropdown({
 	Name = "Choose Halloween Egg",
 	Default = "1",
-	Options = {"Halloween Egg","Orange Egg","Hallow Egg","Spooky Egg","Halloween Dominus Egg","Pumpkin Egg"},
+	Options = {"Halloween Egg","Orange Egg","Hallow Egg","Spooky Egg","Halloween Dominus Egg","Pumpkin Egg","Zombie Miner","Slime Pumpkin","Slime Ghost","Goblin","Slime Crystal","Ghoul Egg"},
 	Callback = function(Value)
 		print(Value)
 		selectedEgg = Value
