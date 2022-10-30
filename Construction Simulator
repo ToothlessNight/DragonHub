@@ -58,14 +58,17 @@ local Window = Rayfield:CreateWindow({
         end,
     })
 
-    -- Buttons
+    local autoRebirthToggle = RebirthTab:CreateToggle({
+        Name = "Auto Rebirth",
+        CurrentValue = false,
+        Flag = "Toggle3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.autoRebirth = Value
+            autoRebirth()
+        end,
+    })
 
-	local RebirthButton = RebirthTab:CreateButton({
-		Name = "Auto Rebirth!",
-		Callback = function()
-			autoRebirth()
-		end,
-	})
+    -- Buttons
 
     local likeCodeButton = MiscTab:CreateButton({
 		Name = "Redeem Like Code!",
