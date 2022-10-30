@@ -7,7 +7,7 @@ local Window = Rayfield:CreateWindow({
         Enabled = true,
         FileName = "DragonHub",
     },
-    KeySystem = false,
+    KeySystem = true,
     KeySettings = {
 	Title = "DragonHub",
 	Subtitle = "Key System",
