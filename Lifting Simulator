@@ -1,49 +1,62 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Player = game.Players.LocalPlayer
-local Window = OrionLib:MakeWindow({Name = "DragonHub Key System", HidePremium = false, SaveConfig = true, IntroText = "DragonHub Key System"})
-
-
-OrionLib:MakeNotification({
-	Name = "Logged In!",
-	Content = "You are logged in as "..Player.Name.."!",
-	Image = "rbxassetid://4483345998",
-	Time = 5
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+local Window = Rayfield:CreateWindow({
+    Name = "DragonHub | By Toothless The Night Fury#9772",
+    LoadingTitle = "DragonHub",
+    LoadingSubtitle = "By Toothless The Night Fury#9772",
+    ConfigurationSaving = {
+        Enabled = true,
+        FileName = "DragonHub",
+    },
+    KeySystem = false,
+    KeySettings = {
+	Title = "DragonHub",
+	Subtitle = "Key System",
+	Note = "Join the discord (https://discord.gg/KwyPcJQ9ma)",
+	Key = "QJsy51gIUcr859Pe2V7bd0xSzW3C64H1Hk29FZbYOr61FMx04ZUrZpwPI6q7213Nqz5a4Ir2x6D1ahjNwy0XZBzW6GSfwC97yh8"
+}
 })
 
-_G.Key = "!e*2BgH}6Hm3i_Psn~;p}uwyLlRUUSD<@-blQ^!3j=rj2{MoEafWkL!&j[Z]sl"
-_G.KeyInput = "string"
-
-function MakeScriptHub()
-	local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-	local Window = OrionLib:MakeWindow({Name = "DragonHub | By Toothless The Night Fury#9772", HidePremium = true, IntroText = "DragonHub", IntroEnabled = false, SaveConfig = true, ConfigFolder = "OrionTest"})
-	-- SCRIPT GOES HERE--
-
 	-- Values
+
 	_G.autoLift = true
 	_G.autoSell = true
 
-	--Buy Item Values
-
-
-	-- Equip Item Values
-
-
 	-- Tabs
-	local LiftingTab = Window:MakeTab({
-        Name = "Farming Menu",
-        Icon = "rbxassetid://4688175782",
-        PremiumOnly = false
-    })
 
-	local PlayerTab = Window:MakeTab({
-        Name = "Player Menu",
-        Icon = "rbxassetid://4688175782",
-        PremiumOnly = false
-    })
+	local FarmingTab = Window:CreateTab("Farming Menu")
+
+	-- Toggle
+
+	local autoLiftToggle = FarmingTab:CreateToggle({
+		Name = "Auto Lift Muscle!",
+		CurrentValue = false,
+		Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+		Callback = function(Value)
+			_G.autoLift = Value
+			autoLift()
+		end,
+	})
+
+	local autoSellToggle = FarmingTab:CreateToggle({
+		Name = "Auto Sell Muscle!",
+		CurrentValue = false,
+		Flag = "Toggle2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+		Callback = function(Value)
+			_G.autoSell = Value
+			autoSell()
+		end,
+	})
+
+	-- Buttons
+
+	-- Dropdowns
+
+	-- Sliders
 
 	-- Functions
+
 	function autoLift()
-		while _G.autoLift == true do
+        while _G.autoLift == true do
 			local args = {
 				[1] = {
 				[1] = "GainMuscle"}}
@@ -53,127 +66,11 @@ function MakeScriptHub()
 	end
 
 	function autoSell()
-		while _G.autoSell == true do
+        while _G.autoSell == true do
 			local args = {
 				[1] = {
 				[1] = "SellMuscle"}}
 			game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
-			task.wait(4)
+			wait(15)
 		end
 	end
-
-	-- Toggles
-
-	local autoLiftToggle = LiftingTab:AddToggle({
-        Name = "Auto Lift",
-        Default = false,
-        Callback = function(Value)
-            _G.autoLift = Value
-            autoLift()
-        end
-    })
-
-	local autoSellToggle = LiftingTab:AddToggle({
-        Name = "Auto Sell",
-        Default = false,
-        Callback = function(Value)
-            _G.autoSell = Value
-            autoSell()
-        end
-    })
-
-	-- Buttons
-
-	-- Sliders
-
-	PlayerTab:AddSlider({
-		Name = "Change Walkspeed",
-		Min = 16,
-		Max = 1002,
-		Default = 16,
-		Color = Color3.fromRGB(255,255,255),
-		Increment = 1,
-		ValueName = "walkspeed",
-		Callback = function(Value)
-			  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
-		end
-	})
-
-	PlayerTab:AddSlider({
-		Name = "Change jumppower",
-		Min = 50,
-		Max = 750,
-		Default = 16,
-		Color = Color3.fromRGB(255,255,255),
-		Increment = 1,
-		ValueName = "jumppower",
-		Callback = function(Value)
-			  game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
-		end
-	})
-
-
-end
-
-function CorrectKeyNotification()
-	OrionLib:MakeNotification({
-		Name = "Correct Key!",
-		Content = "You have entered the correct key!",
-		Image = "rbxassetid://4483345998",
-		Time = 5
-	})
-end
-
-function IncorrectKeyNotification()
-	OrionLib:MakeNotification({
-		Name = "Incorrect Key!",
-		Content = "You have entered the Incorrect key!",
-		Image = "rbxassetid://4483345998",
-		Time = 5
-	})
-end
-
-function DiscordNotification()
-	OrionLib:MakeNotification({
-		Name = "Discord Copied!",
-		Content = "The Discord Link has been copied to clipboard!",
-		Image = "rbxassetid://4483345998",
-		Time = 5
-	})
-end
-
-local Tab = Window:MakeTab({
-	Name = "Key",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-Tab:AddTextbox({
-	Name = "Enter Key",
-	Default = "",
-	TextDisappear = true,
-	Callback = function(Value)
-		_G.KeyInput = (Value)
-	end
-})
-
-Tab:AddButton({
-	Name = "Check Key!",
-		Callback = function()
-      		if _G.KeyInput == _G.Key then
-				MakeScriptHub()
-				CorrectKeyNotification()
-			else
-				IncorrectKeyNotification()
-		end
-    end
-})
-
-Tab:AddButton({
-	Name = "Get Key Here!",
-		Callback = function()
-            if setclipboard("https://discord.gg/KwyPcJQ9ma") then
-                DiscordNotification()
-            end
-		end
-})
