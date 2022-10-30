@@ -12,7 +12,7 @@ local Window = Rayfield:CreateWindow({
 	Title = "DragonHub",
 	Subtitle = "Key System",
 	Note = "Join the discord = https://discord.gg/KwyPcJQ9ma",
-	Key = "QJsy51gIUcr859Pe2V7bd0xSzW3C64H1Hk29FZbYOr61FMx04ZUrZpwPI6q7213Nqz5a4Ir2x6D1ahjNwy0XZBzW6GSfwC97yh8"
+	Key = "l169p25WW05oYa47Q000a0e5w4pPEd9XofFx9cuDHhAC7qiz8K625P6WBljH1ZRj1I4yaFcbQBQgXBiGkzSO7m7vq4B62MOxH55"
 }
 })
 
