@@ -1,21 +1,20 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Player = game.Players.LocalPlayer
-local Window = OrionLib:MakeWindow({Name = "DragonHub Key System", HidePremium = false, SaveConfig = true, IntroText = "DragonHub Key System"})
-
-OrionLib:MakeNotification({
-	Name = "Logged In!",
-	Content = "You are logged in as "..Player.Name.."!",
-	Image = "rbxassetid://4483345998",
-	Time = 5
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+local Window = Rayfield:CreateWindow({
+    Name = "DragonHub | By Toothless The Night Fury#9772",
+    LoadingTitle = "DragonHub",
+    LoadingSubtitle = "By Toothless The Night Fury#9772",
+    ConfigurationSaving = {
+        Enabled = true,
+        FileName = "DragonHub",
+    },
+    KeySystem = true, -- Set this to true to use our key system
+    KeySettings = {
+	Title = "DragonHub",
+	Subtitle = "Key System",
+	Note = "Join the discord (https://discord.gg/KwyPcJQ9ma)",
+	Key = "QJsy51gIUcr859Pe2V7bd0xSzW3C64H1Hk29FZbYOr61FMx04ZUrZpwPI6q7213Nqz5a4Ir2x6D1ahjNwy0XZBzW6GSfwC97yh8"
+}
 })
-
-_G.Key = "!e*2BgH}6Hm3i_Psn~;p}uwyLlRUUSD<@-blQ^!3j=rj2{MoEafWkL!&j[Z]sl"
-_G.KeyInput = "string"
-
-function MakeScriptHub()
-    --- func desc if game.Placeid == 3214114884 then
-    local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-    local Window = OrionLib:MakeWindow({Name = "DragonHub | By Toothless The Night Fury#9772", HidePremium = true, IntroText = "DragonHub", IntroEnabled = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
 
     -- Values
@@ -25,7 +24,8 @@ function MakeScriptHub()
     _G.autoRebirth = true
     _G.autoEgg = true
     _G.eventEgg = true
-    _G.halloweenEgg = true
+    _G.autoEventTwoEgg = true
+    _G.autoHalloweenEgg = true
     _G.storageUpgrade = true
     _G.rebirthUpgrade = true
     _G.jumpUpgrade = true
@@ -40,119 +40,514 @@ function MakeScriptHub()
 
     -- Tabs
 
-    local ClickerTab = Window:MakeTab({
-        Name = "Auto Clicker",
-        Icon = "rbxassetid://4688175782",
-        PremiumOnly = false
-    })
+    local EventTab = Window:CreateTab("Event Menu")
 
-    local RebirthTab = Window:MakeTab({
-        Name = "Rebirth Menu",
-        Icon = "rbxassetid://4688175782",
-        PremiumOnly = false
-    })
+    local ClickerTab = Window:CreateTab("Auto Clicker")
 
-    local EggTab = Window:MakeTab({
-        Name = "Egg Menu",
-        Icon = "rbxassetid://4688175782",
-        PremiumOnly = false
-    })
+    local RebirthTab = Window:CreateTab("Rebirth Menu")
 
-    local UpgradesTab = Window:MakeTab({
-        Name = "Upgrades Menu",
-        Icon = "rbxassetid://4688175782",
-        PremiumOnly = false
-    })
+    local EggTab = Window:CreateTab("Egg Menu")
 
-    local RewardsTab = Window:MakeTab({
-        Name = "Rewards Menu",
-        Icon = "rbxassetid://4688175782",
-        PremiumOnly = false
-    })
+    local UpgradesTab = Window:CreateTab("Upgrades Menu")
 
-    local BoostTab = Window:MakeTab({
-        Name = "Boost Menu",
-        Icon = "rbxassetid://4688175782",
-        PremiumOnly = false
-    })
+    local RewardsTab = Window:CreateTab("Rewards Menu")
 
-    local PlayerTab = Window:MakeTab({
-        Name = "Player Menu",
-        Icon = "rbxassetid://4688175782",
-        PremiumOnly = false
-    })
+    local BoostTab = Window:CreateTab("Boost Menu")
 
-    local TeleportTab = Window:MakeTab({
-        Name = "Teleport Menu",
-        Icon = "rbxassetid://4483345998",
-        PremiumOnly = false
-    })
+    local PlayerTab = Window:CreateTab("Player Menu")
 
-    local MiscTab = Window:MakeTab({
-        Name = "Misc Menu",
-        Icon = "rbxassetid://4483345998",
-        PremiumOnly = false
-    })
+    local TeleportTab = Window:CreateTab("Teleport Menu")
+
+    local MiscTab = Window:CreateTab("Misc Menu")
 
     -- Labels
-    MiscTab:AddLabel("Credits go to 709!")
 
-    TeleportTab:AddLabel("Credits go to 709!")
+    local Label = MiscTab:CreateLabel("Credits go to 709!")
 
+    local Label = TeleportTab:CreateLabel("Credits go to 709!")
 
     -- Dropdown Menus
 
-RebirthTab:AddDropdown({
-	Name = "Rebirth Amount",
-	Default = "",
-	Options = {"1", "5", "10", "20", "100", "500", "4000", "13500", "32000", "62500", "108000", "171500", "256000", "346500", "500000", "1000000", "2000000", "1000000000", "1000000000000", "100000000000000" },
-	Callback = function(Value)
-    Flag = RebirthBro
-		print(Value)
-        rebirthAmount = Value
-	end
-})
+    local Dropdown = RebirthTab:CreateDropdown({
+        Name = "Rebirth Amount",
+        Options = {"1", "5", "10", "20", "100", "500", "4000", "13500", "32000", "62500", "108000", "171500", "256000", "346500", "500000", "1000000", "2000000", "1000000000", "1000000000000", "100000000000000"},
+        CurrentOption = " ",
+        Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            print(Value)
+            rebirthAmount = Value
+        end,
+    })
 
-EggTab:AddDropdown({
-	Name = "Choose Egg",
-	Default = "1",
-	Options = {"Starter","Wood Egg","Jungle Egg","Forest Egg","Bee Egg","Swamp Egg","Snow Egg","Desert Egg","Death Egg","Beach Egg","Mine Egg","Cloud Egg","Coral Egg","Dark Egg","Fire Egg","Underworld Egg","Molten Egg","Magma Egg","Blue Magma Egg","Purple Magma Egg","Yellow Magma Egg","Red Magma Egg","Holy Egg","Holy Wood Egg","Holy Bee Egg","Flora Egg","Flora Egg","Castle Egg","Candy Egg","Festival Egg","Japan Egg","Frost Alien Egg","Toxic Alien Egg"},
-	Callback = function(Value)
-		print(Value)
-		selectedEgg = Value
-	end
-})
+    local Dropdown = EggTab:CreateDropdown({
+        Name = "Choose Egg",
+        Options = {"Starter","Wood Egg","Jungle Egg","Forest Egg","Bee Egg","Swamp Egg","Snow Egg","Desert Egg","Death Egg","Beach Egg","Mine Egg","Cloud Egg","Coral Egg","Dark Egg","Fire Egg","Underworld Egg","Molten Egg","Magma Egg","Blue Magma Egg","Purple Magma Egg","Yellow Magma Egg","Red Magma Egg","Holy Egg","Holy Wood Egg","Holy Bee Egg","Flora Egg","Flora Egg","Castle Egg","Candy Egg","Festival Egg","Japan Egg","Frost Alien Egg","Toxic Alien Egg","Scrapyard Egg","Blood Egg"},
+        CurrentOption = " ",
+        Flag = "Dropdown2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            print(Value)
+            selectedEgg = Value
+        end,
+    })
 
-EggTab:AddDropdown({
-	Name = "Choose Halloween Egg",
-	Default = "1",
-	Options = {"Halloween Egg","Orange Egg","Hallow Egg","Spooky Egg","Halloween Dominus Egg","Pumpkin Egg","Zombie Miner","Slime Pumpkin","Slime Ghost","Goblin","Slime Crystal","Ghoul Egg"},
-	Callback = function(Value)
-		print(Value)
-		selectedEgg = Value
-	end
-})
+    local Dropdown = EventTab:CreateDropdown({
+        Name = "Choose Halloween Egg",
+        Options = {"Halloween Egg","Orange Egg","Hallow Egg","Spooky Egg","Halloween Dominus Egg","Pumpkin Egg","Zombie Miner","Slime Pumpkin","Slime Ghost","Goblin","Slime Crystal","Ghoul Egg"},
+        CurrentOption = " ",
+        Flag = "Dropdown3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            print(Value)
+            selectedEgg = Value
+        end,
+    })
 
+    -- Sliders
+
+    local SpeedSlider = PlayerTab:CreateSlider({
+		Name = "Change Walkspeed",
+		Range = {16, 1002},
+		Increment = 1,
+		Suffix = "walkspeed",
+		CurrentValue = 16,
+		Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+		Callback = function(Value)
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+		end,
+	})
+
+    local JumpSlider = PlayerTab:CreateSlider({
+		Name = "Change Jumppower",
+		Range = {50, 750},
+		Increment = 1,
+		Suffix = "jumppower",
+		CurrentValue = 50,
+		Flag = "Slider2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+		Callback = function(Value)
+			game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+		end,
+	})
+
+
+    -- Toggles
+
+    local autoTapToggle = ClickerTab:CreateToggle({
+        Name = "Auto Tap",
+        CurrentValue = false,
+        Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.autoTap = Value
+            autoTap()
+        end,
+    })
+
+    local autoHalloweenTapToggle = ClickerTab:CreateToggle({
+        Name = "Auto Tap Halloween",
+        CurrentValue = false,
+        Flag = "Toggle2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.autoHalloweenTap = Value
+            autoHalloweenTap()
+        end,
+    })
+
+    local autoRebirthoggle = RebirthTab:CreateToggle({
+        Name = "Auto Rebirth",
+        CurrentValue = false,
+        Flag = "Toggle3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.autoRebirth = Value
+            autoRebirth(rebirthAmount)
+        end,
+    })
+
+    local autoBuyEggToggle = EggTab:CreateToggle({
+        Name = "Auto Buy Egg",
+        CurrentValue = false,
+        Flag = "Toggle4", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.autoEgg = Value
+            autoEgg(selectedEgg)
+        end,
+    })
+
+    local autoUpgradeStorageToggle = UpgradesTab:CreateToggle({
+        Name = "Auto Upgrade Storage",
+        CurrentValue = false,
+        Flag = "Toggle5", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.storageUpgrade = Value
+            storageUpgrade()
+        end,
+    })
+
+    local autoUpgradeRebirthToggle = UpgradesTab:CreateToggle({
+        Name = "Auto Upgrade Rebirth Amount",
+        CurrentValue = false,
+        Flag = "Toggle6", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.rebirthUpgrade = Value
+            rebirthUpgrade()
+        end,
+    })
+
+    local autoUpgradeJumpToggle = UpgradesTab:CreateToggle({
+        Name = "AAuto Upgrade Jump Amount",
+        CurrentValue = false,
+        Flag = "Toggle7", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.jumpUpgrade = Value
+            jumpUpgrade()
+        end,
+    })
+
+    local autoUpgradeGemToggle = UpgradesTab:CreateToggle({
+        Name = "Auto Upgrade Gem Amount",
+        CurrentValue = false,
+        Flag = "Toggle8", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.gemUpgrade = Value
+            gemUpgrade()
+        end,
+    })
+
+    local autoClaimRandomRewardToggle = RewardsTab:CreateToggle({
+        Name = "Auto Claim Random Reward",
+        CurrentValue = false,
+        Flag = "Toggle9", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.claimRandomReward = Value
+            claimRandomReward()
+        end,
+    })
+
+    local autoClaimRankRewardToggle = RewardsTab:CreateToggle({
+        Name = "Auto Claim Rank Reward",
+        CurrentValue = false,
+        Flag = "Toggle10", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.claimRankReward = Value
+            claimRankReward()
+        end,
+    })
+
+    local autoClaimDailyRewardToggle = RewardsTab:CreateToggle({
+        Name = "Auto Claim Daily Reward",
+        CurrentValue = false,
+        Flag = "Toggle11", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.claimDailyReward = Value
+            claimDailyReward()
+        end,
+    })
+
+    local autoUseTripleTapToggle = BoostTab:CreateToggle({
+        Name = "Auto Use Triple Tap",
+        CurrentValue = false,
+        Flag = "Toggle12", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.tripleTap = Value
+            UseTripleTap()
+        end,
+    })
+
+    local autoUseDoubleLuckToggle = BoostTab:CreateToggle({
+        Name = "Auto Use Double Luck",
+        CurrentValue = false,
+        Flag = "Toggle13", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.doubleLuckBoost = Value
+            UseDoubleLuckBoost()
+        end,
+    })
+
+    local autoUseTripleLuckToggle = BoostTab:CreateToggle({
+        Name = "Auto Use Triple Luck",
+        CurrentValue = false,
+        Flag = "Toggle14", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.tripleLuckBoost = Value
+            UseTripleLuckBoost()
+        end,
+    })
+
+    local autoFarmBossFightToggle = MiscTab:CreateToggle({
+        Name = "Auto Farm Boss Fight",
+        CurrentValue = false,
+        Flag = "Toggle15", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.autoBoss = Value
+            autoBoss()
+        end,
+    })
+
+    -- Events Toggles
+
+    local autoBuyHalloweenEggToggle = EventTab:CreateToggle({
+        Name = "Auto Buy Halloween Egg",
+        CurrentValue = false,
+        Flag = "Toggle5", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.autoHalloweenEgg = Value
+            autoHalloweenEgg(selectedEgg)
+        end,
+    })
+
+    local autoBuyEventEggToggle = EventTab:CreateToggle({
+        Name = "Auto Buy Event Egg",
+        CurrentValue = false,
+        Flag = "Toggle6", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.eventEgg = Value
+            autoEventEgg()
+        end,
+    })
+
+    local autoBuyEventTwoEggToggle = EventTab:CreateToggle({
+        Name = "Auto Buy Event Two Egg",
+        CurrentValue = false,
+        Flag = "Toggle7", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            _G.autoEventTwoEgg = Value
+            autoEventTwoEgg()
+        end,
+    })
+
+    -- Buttons
+
+    local unlockAllPortalsButton = MiscTab:CreateButton({
+		Name = "Unlock All Portals!",
+		Callback = function()
+			print("Unlock all portals button pressed")
+            unlockPortals()
+		end,
+	})
+
+    local redeemAllKnownCodesButton = MiscTab:CreateButton({
+		Name = "Redeem all known codes!",
+		Callback = function()
+			print("All codes have been redeemed!")
+            redeemAllCodes()
+		end,
+	})
+
+    local spawnTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Spawn!",
+		Callback = function()
+			spawnTP()
+		end,
+	})
+
+    local forestTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Forest!",
+		Callback = function()
+			forestTP()
+		end,
+	})
+
+    local flowerTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport to Flower!",
+		Callback = function()
+			flowerTP()
+		end,
+	})
+
+    local swampTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport to Swamp!",
+		Callback = function()
+			swampTP()
+		end,
+	})
+
+    local snowTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport to Snow!",
+		Callback = function()
+			snowTP()
+		end,
+	})
+
+    local desertTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport to Desert!",
+		Callback = function()
+			desertTP()
+		end,
+	})
+
+    local deathTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport to Death!",
+		Callback = function()
+			deathTP()
+		end,
+	})
+
+    local beachTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport to Beach!",
+		Callback = function()
+			beachTP()
+		end,
+	})
+
+    local minesTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport to Mines!",
+		Callback = function()
+			minesTP()
+		end,
+	})
+
+    local cloudsTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport to Clouds!",
+		Callback = function()
+			cloudsTP()
+		end,
+	})
+
+    local coralTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Coral!",
+		Callback = function()
+			coralTP()
+		end,
+	})
+
+    local darkheartTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Darkheart!",
+		Callback = function()
+			darkheartTP()
+		end,
+	})
+
+    local flamelandsTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Flamelands!",
+		Callback = function()
+			flamelandsTP()
+		end,
+	})
+
+    local  moltenTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Molten!",
+		Callback = function()
+            moltenTP()
+		end,
+	})
+
+    local blueMagmaTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Blue Magma!",
+		Callback = function()
+			blueMagmaTP()
+		end,
+	})
+
+    local purpleMagmaTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Purple Magma!",
+		Callback = function()
+			purpleMagmaTP()
+		end,
+	})
+
+    local yellowMagmaTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Yellow Magma!",
+		Callback = function()
+			yellowMagmaTP()
+		end,
+	})
+
+    local redMagmaTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Red Magma!",
+		Callback = function()
+			redMagmaTP()
+		end,
+	})
+
+    local fantasyTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Fantasy!",
+		Callback = function()
+			fantasyTP()
+		end,
+	})
+
+    local mysticMireTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Mystic!",
+		Callback = function()
+			mysticMireTP()
+		end,
+	})
+
+    local castleTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Castle!",
+		Callback = function()
+			castleTP()
+		end,
+	})
+
+    local festivalTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Festival!",
+		Callback = function()
+			festivalTP()
+		end,
+	})
+
+    local japaneseTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Japanese!",
+		Callback = function()
+			japaneseTP()
+		end,
+	})
+
+    local spaceTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Space!",
+		Callback = function()
+			spaceTP()
+		end,
+	})
+
+    local frostSpaceTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Frost Space!",
+		Callback = function()
+			frostSpaceTP()
+		end,
+	})
+
+    local toxicSpaceTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Darkheart!",
+		Callback = function()
+			toxicSpaceTP()
+		end,
+	})
+
+    local asteroidSpaceTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Asteroid Space!",
+		Callback = function()
+			asteroidSpaceTP()
+		end,
+	})
+
+    local scrapyardSpaceTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Scrapyard Space!",
+		Callback = function()
+			scrapyardSpaceTP()
+		end,
+	})
+
+    local bloodSpaceTeleportButton = TeleportTab:CreateButton({
+		Name = "Teleport To Blood Space!",
+		Callback = function()
+			bloodSpaceTP()
+		end,
+	})
 
     -- Functions
 
     function autoTap()
         while _G.autoTap == true do
-            game.ReplicatedStorage.Events.Tap:FireServer()
-            task.wait()
-        end
-    end
-
-    function autoHalloweenTap()
-        while _G.autoTap == true do
-            game.ReplicatedStorage.Events.Tap:FireServer(5)
+            local args = {
+                [1] = 1}
+            game:GetService("ReplicatedStorage").Events.Tap:FireServer(unpack(args))            
             task.wait()
         end
     end
 
     function autoRebirth(rebirthAmount)
         while _G.autoRebirth == true do
-            local args = { [1] = rebirthAmount}
+            local args = {
+                [1] = rebirthAmount}
             game:GetService("ReplicatedStorage").Events.Rebirth:FireServer(unpack(args))
             task.wait()
         end
@@ -167,32 +562,7 @@ EggTab:AddDropdown({
                     [2] = selectedEgg,
                     [3] = 1}
                 game:GetService("ReplicatedStorage").Events.HatchEgg:InvokeServer(unpack(args))
-            end
-        end)
-    end
-
-    function halloweenEgg(selectedEgg)
-        spawn(function()
-            while wait() do
-                if not _G.halloweenEgg then break end
-                local args = {
-                    [1] = {},
-                    [2] = selectedEgg,
-                    [3] = 1}
-                game:GetService("ReplicatedStorage").Events.HatchEgg:InvokeServer(unpack(args))
-            end
-        end)
-    end
-
-    function autoEventEgg()
-        spawn(function()
-            while wait() do
-                if not _G.eventEgg then break end
-                local args = {
-                    [1] = {},
-                    [2] = "60M Egg",
-                    [3] = 1}
-                game:GetService("ReplicatedStorage").Events.HatchEgg:InvokeServer(unpack(args))
+                task.wait()
             end
         end)
     end
@@ -239,23 +609,23 @@ EggTab:AddDropdown({
 
     function claimRandomReward()
         spawn(function()
-            while wait(2) do
+            while wait(180) do
                 game:GetService("ReplicatedStorage").Events.ClaimRandomReward:FireServer()
             end
         end)
     end
-    
+
     function claimRankReward()
         spawn(function()
-            while wait(2) do
+            while wait(180) do
                 game:GetService("ReplicatedStorage").Events.ClaimRankReward:FireServer()
             end
         end)
     end
-    
+
     function claimDailyReward()
         spawn(function()
-            while wait(2) do
+            while wait(180) do
                 game:GetService("ReplicatedStorage").Events.OpenDailyReward:InvokeServer()
             end
         end)
@@ -270,7 +640,7 @@ EggTab:AddDropdown({
             end
         end)
     end
-    
+
     function UseDoubleLuckBoost()
         spawn(function()
             while wait(900) do
@@ -296,9 +666,7 @@ EggTab:AddDropdown({
             game.ReplicatedStorage.Events.StartBossFight:FireServer()
             wait(0.5)
             local args = {
-                [1] = workspace["Magma Boss"]
-            }
-
+                [1] = workspace["Magma Boss"]}
             game:GetService("ReplicatedStorage").Events.Fire:FireServer(unpack(args))
             wait(5)
         end
@@ -358,6 +726,10 @@ EggTab:AddDropdown({
         toxicSpaceTP()
         wait(4)
         asteroidSpaceTP()
+        wait(4)
+        scrapyardSpaceTP()
+        wait(4)
+        bloodSpaceTP()
         end
 
         function spawnTP()
@@ -475,6 +847,12 @@ EggTab:AddDropdown({
         function scrapyardSpaceTP()
         game.ReplicatedStorage.Events.Teleport:FireServer(CFrame.new(1304.94995, 13605.2275, -8097.60742, 0.707131207, 0, -0.707082391, 0, 1.00000012, 0, 0.707082391, 0, 0.707131207))
         end
+
+        function bloodSpaceTP()
+        local args = {
+            [1] = CFrame.new(1332.615478515625, 18718.4453125, -8038.8974609375) * CFrame.Angles(-0, -0.7853636741638184, -0)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+        end
     
         function halloweenTP()
         game.ReplicatedStorage.Events.Teleport:FireServer(CFrame.new(-3072.79272, 147.144028, -2817.2522, 0.707131207, 0, -0.707082391, 0, 1.00000012, 0, 0.707082391, 0, 0.707131207))
@@ -498,508 +876,93 @@ EggTab:AddDropdown({
 
         function redeemAllCodes()
             local args = {[1] = "upd15"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "space"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "50mvisits"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "spooky"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "50m"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "upd12"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "45m"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "update11ty"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "40m"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "fantasy"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "35m"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "30m"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "secret"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "update4"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "update3"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "update2"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "update1"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "release"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
-            wait(.01)
+            wait(2)
             local args = {[1] = "testing"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
+            wait(2)
+            local args = {[1] = "UPD18"}game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(unpack(args))
         end
 
-    -- Toggles
-    local autoTapToggle = ClickerTab:AddToggle({
-        Name = "Auto Tap",
-        Default = false,
-        Callback = function(Value)
-            _G.autoTap = Value
-            autoTap()
+    -- Event Functions
+
+    function autoHalloweenTap()
+        while _G.autoHalloweenTap == true do
+            local args = {
+                [1] = 5}
+            game:GetService("ReplicatedStorage").Events.Tap:FireServer(unpack(args))            
+            task.wait()
         end
-    })
-
-    ClickerTab:AddToggle({
-        Name = "Auto Tap Halloween",
-        Default = false,
-        Callback = function(Value)
-            _G.autoTap = Value
-            autoHalloweenTap()
-        end
-    })
-
-    local autoRebirthToggle = RebirthTab:AddToggle({
-        Name = "Auto Rebirth",
-        Default = false,
-        Callback = function(Value)
-            _G.autoRebirth = Value
-            autoRebirth(rebirthAmount)
-        end
-    })
-
-    EggTab:AddToggle({
-        Name = "Auto Buy Egg",
-        Default = false,
-        Callback = function(Value)
-            _G.autoEgg = Value
-            autoEgg(selectedEgg)
-        end
-    })
-
-    EggTab:AddToggle({
-        Name = "Auto Buy Halloween Egg",
-        Default = false,
-        Callback = function(Value)
-            _G.halloweenEgg = Value
-            halloweenEgg(selectedEgg)
-        end
-    })
-
-    EggTab:AddToggle({
-        Name = "Auto Buy Event Egg",
-        Default = false,
-        Callback = function(Value)
-            _G.eventEgg = Value
-            autoEventEgg()
-        end
-    })
-
-    UpgradesTab:AddToggle({
-        Name = "Auto Upgrade Storage",
-        Default = false,
-        Callback = function(Value)
-            _G.storageUpgrade = Value
-            storageUpgrade()
-        end
-    })
-
-    UpgradesTab:AddToggle({
-        Name = "Auto Upgrade Rebirth Amount",
-        Default = false,
-        Callback = function(Value)
-            _G.rebirthUpgrade = Value
-            rebirthUpgrade()
-        end
-    })
-
-    UpgradesTab:AddToggle({
-        Name = "Auto Upgrade Jump Amount",
-        Default = false,
-        Callback = function(Value)
-            _G.jumpUpgrade = Value
-            jumpUpgrade()
-        end
-    })
-
-    UpgradesTab:AddToggle({
-        Name = "Auto Upgrade Gem Amount",
-        Default = false,
-        Callback = function(Value)
-            _G.gemUpgrade = Value
-            gemUpgrade()
-        end
-    })
-
-    RewardsTab:AddToggle({
-        Name = "Auto Claim Random Reward",
-        Default = false,
-        Callback = function(Value)
-            _G.claimRandomReward = Value
-            claimRandomReward()
-        end
-    })
-
-    RewardsTab:AddToggle({
-        Name = "Auto Claim Rank Rewards",
-        Default = false,
-        Callback = function(Value)
-            _G.claimRankReward = Value
-            claimRankReward()
-        end
-    })
-
-    RewardsTab:AddToggle({
-        Name = "Auto Claim Daily Reward",
-        Default = false,
-        Callback = function(Value)
-            _G.claimDailyReward = Value
-            claimDailyReward()
-        end
-    })
-
-    BoostTab:AddToggle({
-        Name = "Auto Use Triple Tap",
-        Default = false,
-        Callback = function(Value)
-            _G.tripleTap = Value
-            UseTripleTap()
-        end
-    })
-
-    BoostTab:AddToggle({
-        Name = "Auto Use Double Luck",
-        Default = false,
-        Callback = function(Value)
-            _G.doubleLuckBoost = Value
-            UseDoubleLuckBoost()
-        end
-    })
-
-    BoostTab:AddToggle({
-        Name = "Auto Use Triple Luck",
-        Default = false,
-        Callback = function(Value)
-            _G.tripleLuckBoost = Value
-            UseTripleLuckBoost()
-        end
-    })
-
-    MiscTab:AddToggle({
-        Name = "Auto Farm Boss Fight",
-        Default = false,
-        Callback = function(Value)
-            _G.autoBoss = Value
-            autoBoss()
-        end
-    })
-
-    -- Buttons
-    MiscTab:AddButton({
-        Name = "Unlock All Portals!",
-        Callback = function()
-                  print("Unlock all portals button pressed")
-                unlockPortals()
-          end
-    })
-    
-    MiscTab:AddButton({
-        Name = "Redeem all known codes!",
-        Callback = function()
-            print("All codes have been redeemed!")
-            redeemAllCodes()
-        end
-    })
-    
-    TeleportTab:AddButton({
-        Name = "Teleport To Spawn!",
-        Callback = function()
-                  spawnTP()
-          end    
-    })
-    
-    TeleportTab:AddButton({
-        Name = "Teleport To Forest!",
-        Callback = function()
-                  forestTP()
-          end    
-    })
-    
-    TeleportTab:AddButton({
-        Name = "Teleport to Flower!",
-        Callback = function()
-                  flowerTP()
-          end    
-    })
-    
-    TeleportTab:AddButton({
-        Name = "Teleport to Swamp!",
-        Callback = function()
-                  swampTP()
-          end    
-    })
-    
-    TeleportTab:AddButton({
-        Name = "Teleport to Snow!",
-        Callback = function()
-                  snowTP()
-          end    
-    })
-    
-    TeleportTab:AddButton({
-        Name = "Teleport to Desert!",
-        Callback = function()
-            desertTP()
     end
-    })
-    
-    TeleportTab:AddButton({
-        Name = "Teleport to Death!",
-        Callback = function()
-            deathTP()
-    end
-    })
-    
-    TeleportTab:AddButton({
-        Name = "Teleport to Beach!",
-        Callback = function()
-            beachTP()
-    end
-    })
-    
-    TeleportTab:AddButton({
-        Name = "Teleport to Mines!",
-        Callback = function()
-            minesTP()
-    end
-    })
-    
-    TeleportTab:AddButton({
-        Name = "Teleport to Clouds!",
-        Callback = function()
-            cloudsTP()
-    end
-    })
-    
-    TeleportTab:AddButton({
-        Name = "Teleport to Coral!",
-        Callback = function()
-            coralTP()
-    end
-    })
-    
-    TeleportTab:AddButton({
-        Name = "Teleport to Darkheart!",
-        Callback = function()
-            darkheartTP()
-    end
-    })
 
-    TeleportTab:AddButton({
-        Name = "Teleport to Flamelands!",
-        Callback = function()
-            flamelandsTP()
-    end
-    })
-
-    TeleportTab:AddButton({
-        Name = "Teleport to Molten!",
-        Callback = function()
-            moltenTP()
-    end
-    })
-
-    TeleportTab:AddButton({
-        Name = "Teleport to Blue Magma!",
-        Callback = function()
-            blueMagmaTP()
-    end
-    })
-
-    TeleportTab:AddButton({
-        Name = "Teleport to Purple Magma!",
-        Callback = function()
-            purpleMagmaTP()
-    end
-    })
-
-    TeleportTab:AddButton({
-        Name = "Teleport to Yellow Magma!",
-        Callback = function()
-            yellowMagmaTP()
-    end
-    })
-
-    TeleportTab:AddButton({
-        Name = "Teleport to Red Magma!",
-        Callback = function()
-            redMagmaTP()
-    end
-    })
-
-    TeleportTab:AddButton({
-        Name = "Teleport to Fantasy!",
-        Callback = function()
-            fantasyTP()
-    end
-    })
-
-    TeleportTab:AddButton({
-        Name = "Teleport to Mystic!",
-        Callback = function()
-            mysticTP()
-    end
-    })
-
-    TeleportTab:AddButton({
-        Name = "Teleport to Castle!",
-        Callback = function()
-            castleTP()
-    end
-    })
-
-    TeleportTab:AddButton({
-        Name = "Teleport to Festival!",
-        Callback = function()
-            festivalTP()
-    end
-    })
-
-    TeleportTab:AddButton({
-        Name = "Teleport to Japanese!",
-        Callback = function()
-            japaneseTP()
-    end
-    })
-
-    TeleportTab:AddButton({
-        Name = "Teleport to Space!",
-        Callback = function()
-            spaceTP()
-    end
-    })
-
-    TeleportTab:AddButton({
-        Name = "Teleport to Frost Space!",
-        Callback = function()
-            frostSpaceTP()
-    end
-    })
-
-    TeleportTab:AddButton({
-        Name = "Teleport to Toxic Space!",
-        Callback = function()
-            toxicSpaceTP()
-    end
-    })
-
-    TeleportTab:AddButton({
-        Name = "Teleport to Asteroid Space!",
-        Callback = function()
-            asteroidSpaceTP()
-    end
-    })
-
-    PlayerTab:AddButton({
-        Name = "Simple inf Jump",function()
-            local InfiniteJumpEnabled = true
-                    game:GetService("UserInputService").JumpRequest:connect(function()
-                if InfiniteJumpEnabled then
-                    game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
-                end
-            end)
-        end
-    })
-
-    -- Sliders
-
-    PlayerTab:AddSlider({
-		Name = "Change Walkspeed",
-		Min = 16,
-		Max = 500,
-		Default = 16,
-		Color = Color3.fromRGB(255,255,255),
-		Increment = 1,
-		ValueName = "walkspeed",
-		Callback = function(Value)
-			  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
-		end
-	})
-
-	PlayerTab:AddSlider({
-		Name = "Change jumppower",
-		Min = 50,
-		Max = 300,
-		Default = 16,
-		Color = Color3.fromRGB(255,255,255),
-		Increment = 1,
-		ValueName = "jumppower",
-		Callback = function(Value)
-			  game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
-		end
-	})
-
-    --end
-    enableBasicStuff()
-    OrionLib:Init()
-
-end
-
-function CorrectKeyNotification()
-	OrionLib:MakeNotification({
-		Name = "Correct Key!",
-		Content = "You have entered the correct key!",
-		Image = "rbxassetid://4483345998",
-		Time = 5
-	})
-end
-
-function IncorrectKeyNotification()
-	OrionLib:MakeNotification({
-		Name = "Incorrect Key!",
-		Content = "You have entered the Incorrect key!",
-		Image = "rbxassetid://4483345998",
-		Time = 5
-	})
-end
-
-function DiscordNotification()
-	OrionLib:MakeNotification({
-		Name = "Discord Copied!",
-		Content = "The Discord Link has been copied to clipboard!",
-		Image = "rbxassetid://4483345998",
-		Time = 5
-	})
-end
-
-local Tab = Window:MakeTab({
-	Name = "Key",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-Tab:AddTextbox({
-	Name = "Enter Key",
-	Default = "",
-	TextDisappear = true,
-	Callback = function(Value)
-		_G.KeyInput = (Value)
-	end
-})
-
-Tab:AddButton({
-	Name = "Check Key!",
-		Callback = function()
-      		if _G.KeyInput == _G.Key then
-				MakeScriptHub()
-				CorrectKeyNotification()
-			else
-				IncorrectKeyNotification()
-		end
-    end
-})
-
-Tab:AddButton({
-	Name = "Get Key Here!",
-		Callback = function()
-            if setclipboard("https://discord.gg/KwyPcJQ9ma") then
-                DiscordNotification()
+    function autoHalloweenEgg(selectedEgg)
+        spawn(function()
+            while wait() do
+                if not _G.autoHalloweenEgg then break end
+                local args = {
+                    [1] = {},
+                    [2] = selectedEgg,
+                    [3] = 1}
+                game:GetService("ReplicatedStorage").Events.HatchEgg:InvokeServer(unpack(args))
+                task.wait()
             end
-		end
-})
+        end)
+    end
+
+    function autoEventEgg()
+        spawn(function()
+            while wait() do
+                if not _G.eventEgg then break end
+                local args = {
+                    [1] = {},
+                    [2] = "60M Egg",
+                    [3] = 1}
+                game:GetService("ReplicatedStorage").Events.HatchEgg:InvokeServer(unpack(args))
+            end
+        end)
+    end
+
+    function autoEventTwoEgg()
+        spawn(function()
+            while wait() do
+                if not _G.autoEventTwoEgg then break end
+                local args = {
+                    [1] = {},
+                    [2] = "65M Egg",
+                    [3] = 1}
+                game:GetService("ReplicatedStorage").Events.HatchEgg:InvokeServer(unpack(args))
+            end
+        end)
+    end
