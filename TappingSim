@@ -7,7 +7,7 @@ local Window = Rayfield:CreateWindow({
         Enabled = true,
         FileName = "DragonHub",
     },
-    KeySystem = true,
+    KeySystem = true, -- Set this to true to use our key system
     KeySettings = {
 	Title = "DragonHub",
 	Subtitle = "Key System",
@@ -573,6 +573,7 @@ local Window = Rayfield:CreateWindow({
                 local args = {
                     [1] = "storageUpgrade"}
                 game:GetService("ReplicatedStorage").Events.Upgrade:FireServer(unpack(args))
+                task.wait(5)
             end
         end)
     end
@@ -583,6 +584,7 @@ local Window = Rayfield:CreateWindow({
                 local args = {
                     [1] = "rebirthUpgrades"}
                 game:GetService("ReplicatedStorage").Events.Upgrade:FireServer(unpack(args))
+                task.wait(5)
             end
         end)
     end
@@ -593,6 +595,7 @@ local Window = Rayfield:CreateWindow({
                 local args = {
                     [1] = "jumps"}
                 game:GetService("ReplicatedStorage").Events.Upgrade:FireServer(unpack(args))
+                task.wait(5)
             end
         end)
     end
@@ -603,6 +606,7 @@ local Window = Rayfield:CreateWindow({
                 local args = {
                     [1] = "gemMultiplierUpgrade"}
                 game:GetService("ReplicatedStorage").Events.Upgrade:FireServer(unpack(args))
+                task.wait(5)
             end
         end)
     end
@@ -611,6 +615,7 @@ local Window = Rayfield:CreateWindow({
         spawn(function()
             while wait(180) do
                 game:GetService("ReplicatedStorage").Events.ClaimRandomReward:FireServer()
+                task.wait(15)
             end
         end)
     end
@@ -619,6 +624,7 @@ local Window = Rayfield:CreateWindow({
         spawn(function()
             while wait(180) do
                 game:GetService("ReplicatedStorage").Events.ClaimRankReward:FireServer()
+                task.wait(15)
             end
         end)
     end
@@ -627,6 +633,7 @@ local Window = Rayfield:CreateWindow({
         spawn(function()
             while wait(180) do
                 game:GetService("ReplicatedStorage").Events.OpenDailyReward:InvokeServer()
+                task.wait(15)
             end
         end)
     end
@@ -637,6 +644,7 @@ local Window = Rayfield:CreateWindow({
                 local args = {
                     [1] = "tripleTaps"}
                 game:GetService("ReplicatedStorage").Events.UseBoost:FireServer(unpack(args))
+                task.wait(15)
             end
         end)
     end
@@ -647,6 +655,7 @@ local Window = Rayfield:CreateWindow({
                 local args = {
                     [1] = "doubleLuck"}
                 game:GetService("ReplicatedStorage").Events.UseBoost:FireServer(unpack(args))
+                task.wait(15)
             end
         end)
     end
@@ -657,6 +666,7 @@ local Window = Rayfield:CreateWindow({
                 local args = {
                     [1] = "tripleLuck"}
                 game:GetService("ReplicatedStorage").Events.UseBoost:FireServer(unpack(args))
+                task.wait(15)
             end
         end)
     end
